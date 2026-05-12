@@ -19,8 +19,9 @@ models:
         description: "Statut final de la commande"
         tests:
           - accepted_values:
-              values: ['delivered', 'shipped', 'canceled', 'unavailable',
-                       'invoiced', 'processing', 'created', 'approved']
+              arguments:
+                values: ['delivered', 'shipped', 'canceled', 'unavailable',
+                         'invoiced', 'processing', 'created', 'approved']
 
   - name: dim_customers
     description: "Dimension clients enrichie avec statistiques commandes"
