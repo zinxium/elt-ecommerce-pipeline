@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Commandes nettoyées depuis la source brute Olist"
+    columns:
+      - name: order_id
+        description: "Identifiant unique de la commande"
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "Identifiant du client"
+        tests:
+          - not_null
+
+      - name: order_status
+        description: "Statut de la commande"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['delivered', 'shipped', 'canceled', 'unavailable',
+                         'invoiced', 'processing', 'created', 'approved']
+
+  - name: stg_customers
+    description: "Clients nettoyés depuis la source brute Olist"
+    columns:
+      - name: customer_id
+        description: "Identifiant unique du client"
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_state
+        description: "État brésilien du client (2 lettres)"
+        tests:
+          - not_null
+
+  - name: stg_products
+    description: "Produits nettoyés depuis la source brute Olist"
+    columns:
+      - name: product_id
+        description: "Identifiant unique du produit"
+        tests:
+          - unique
+          - not_null
+
+      - name: product_category
+        description: "Catégorie du produit"
+        tests:
+          - not_null

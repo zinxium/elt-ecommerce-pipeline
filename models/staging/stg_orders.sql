@@ -10,16 +10,13 @@ cleaned as (
         order_id,
         customer_id,
         order_status,
-
-        -- Cast des timestamps texte en vrais types date
-        try_cast(order_purchase_timestamp      as timestamp_ntz) as ordered_at,
-        try_cast(order_approved_at             as timestamp_ntz) as approved_at,
-        try_cast(order_delivered_carrier_date  as timestamp_ntz) as shipped_at,
-        try_cast(order_delivered_customer_date as timestamp_ntz) as delivered_at,
-        try_cast(order_estimated_delivery_date as timestamp_ntz) as estimated_delivery_at
-
+        order_purchase_timestamp      as ordered_at,
+        order_approved_at             as approved_at,
+        order_delivered_carrier_date  as shipped_at,
+        order_delivered_customer_date as delivered_at,
+        order_estimated_delivery_date as estimated_delivery_at
     from source
-    where order_id is not null  -- on filtre les lignes sans identifiant
+    where order_id is not null
 )
 
 select * from cleaned
