@@ -1,7 +1,4 @@
 .env
 data/
-<<<<<<< HEAD
-=======
 gcp_credentials.json
->>>>>>> 66f308b29f789034dbbb0332ed07248fe78f8eaf
 dbt_internal_packages/
