@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: "Table de faits centrale — commandes enrichies avec métriques business"
+    columns:
+      - name: order_id
+        description: "Identifiant unique de la commande"
+        tests:
+          - unique
+          - not_null
+
+      - name: total_revenue
+        description: "Chiffre d'affaires total de la commande"
+        tests:
+          - not_null
+
+      - name: order_status
+        description: "Statut final de la commande"
+        tests:
+          - accepted_values:
+              values: ['delivered', 'shipped', 'canceled', 'unavailable',
+                       'invoiced', 'processing', 'created', 'approved']
+
+  - name: dim_customers
+    description: "Dimension clients enrichie avec statistiques commandes"
+    columns:
+      - name: customer_id
+        description: "Identifiant unique du client"
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_state
+        description: "État brésilien du client"
+        tests:
+          - not_null
